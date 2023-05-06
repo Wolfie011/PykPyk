@@ -1,12 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class TabButton : MonoBehaviour, IPointerClickHandler, IPointerExitHandler
+public class TabButton : MonoBehaviour, IPointerClickHandler
 {
     public TabGroup tabGroup;
-    public Image background;
+    [NonSerialized] public Image background;
 
     private void Awake()
     {
@@ -16,9 +17,5 @@ public class TabButton : MonoBehaviour, IPointerClickHandler, IPointerExitHandle
     public void OnPointerClick(PointerEventData eventData)
     {
         tabGroup.OnTabSelected(this);
-    }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        tabGroup.OnTabExit(this);
     }
 }

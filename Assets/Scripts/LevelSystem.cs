@@ -118,6 +118,9 @@ public class LevelSystem : MonoBehaviour
         EventManager.Instance.QueueEvent(currencyInfo);
 
     }
-
+    public int GetLevel()
+    {
+        return Level;
+    }
 
 }

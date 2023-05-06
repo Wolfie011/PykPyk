@@ -22,7 +22,7 @@ public class ShopItemDrag : MonoBehaviour, IEndDragHandler, IDragHandler
     {
         drag = true;
         cg.blocksRaycasts = false;
-        img.maskable = true;
+        img.maskable = false;
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -47,6 +47,7 @@ public class ShopItemDrag : MonoBehaviour, IEndDragHandler, IDragHandler
         drag = false;
         cg.blocksRaycasts = true;
         img.maskable = true;
+        rt.anchoredPosition = orginPos;
 
         Color c = img.color;
         c.a = 1f;

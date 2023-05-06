@@ -14,6 +14,8 @@ public class ShopItemHolder : MonoBehaviour
     [SerializeField] private Image currencyImage;
     [SerializeField] private TextMeshProUGUI priceText;
 
+    private LevelSystem levelSystem;
+
     public void Initialize(ShopItem item)
     {
         Item = item;
@@ -22,8 +24,9 @@ public class ShopItemHolder : MonoBehaviour
         descriptionText.text = Item.Description;
         currencyImage.sprite = ShopManager.currencySprites[Item.Currency];
         priceText.text = Item.Price.ToString();
-
-        /*if(Item.Level >= LevelSystem.Level)
+        /*levelSystem = GetComponent<LevelSystem>();
+        int currentLevel = levelSystem.GetLevel();
+        if (Item.Level >= currentLevel)
         {
             UnlockItem();
         }*/

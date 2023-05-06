@@ -21,4 +21,9 @@ public class GameManager : MonoBehaviour
         CurrencyChangeGameEvent info = new CurrencyChangeGameEvent(amount, CurrencyType.Coins);
         EventManager.Instance.QueueEvent(info);
     }
+    public void GetCrystals(int amount)
+    {
+        CurrencyChangeGameEvent info = new CurrencyChangeGameEvent(amount, CurrencyType.Crystals);
+        EventManager.Instance.QueueEvent(info);
+    }
 }

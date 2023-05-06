@@ -7,12 +7,16 @@ public class ShopManager : MonoBehaviour
 {
     public static ShopManager current;
     public static Dictionary<CurrencyType, Sprite> currencySprites = new Dictionary<CurrencyType, Sprite>();
+
     [SerializeField] private List<Sprite> sprites;
+
     private RectTransform rt;
     private RectTransform prt;
     private bool opened;
+
     [SerializeField] private GameObject itemPrefab;
-    private Dictionary<ObjectType, List<ShopItem>> shopItems = new Dictionary<ObjectType, List<ShopItem>>(5);
+    private Dictionary<ObjectType, List<ShopItem>> shopItems = new Dictionary<ObjectType, List<ShopItem>>(2);
+
     [SerializeField] public TabGroup shopTabs;
 
     private void Awake()
@@ -20,7 +24,7 @@ public class ShopManager : MonoBehaviour
         current = this;
         rt = GetComponent<RectTransform>();
         prt = transform.parent.GetComponent<RectTransform>();
-
+        gameObject.SetActive(false);
         EventManager.Instance.AddListener<LevelChangedGameEvent>(OnLevelChanged);
     }
     private void Start()
@@ -31,7 +35,7 @@ public class ShopManager : MonoBehaviour
         Load();
         Initialize();
 
-        gameObject.SetActive(false);
+        
     }
     private void Load()
     {
@@ -39,9 +43,9 @@ public class ShopManager : MonoBehaviour
 
         shopItems.Add(ObjectType.Animals, new List<ShopItem>());
         shopItems.Add(ObjectType.AnimalHomes, new List<ShopItem>());
-        shopItems.Add(ObjectType.ProductionBuildings, new List<ShopItem>());
+        /*shopItems.Add(ObjectType.ProductionBuildings, new List<ShopItem>());
         shopItems.Add(ObjectType.TreesBshes, new List<ShopItem>());
-        shopItems.Add(ObjectType.Decorations, new List<ShopItem>());
+        shopItems.Add(ObjectType.Decorations, new List<ShopItem>());*/
 
         foreach(var item in items)
         {
