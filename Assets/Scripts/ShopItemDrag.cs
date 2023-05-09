@@ -4,20 +4,31 @@ using UnityEngine.UI;
 
 public class ShopItemDrag : MonoBehaviour, IEndDragHandler, IDragHandler
 {
+    private ShopItem Item;
+
     public static Canvas canvas;
+
     private RectTransform rt;
     private CanvasGroup cg;
     private Image img;
+
     private Vector3 orginPos;
     private bool drag;
+
+    public void Initialize(ShopItem item)
+    {
+        Item = item;
+    }
 
     private void Awake()
     {
         rt = GetComponent<RectTransform>();
         cg = GetComponent<CanvasGroup>();
+
         img = GetComponent<Image>();
         orginPos = rt.anchoredPosition;
     }
+
     public void OnBeingDrag(PointerEventData eventData)
     {
         drag = true;
@@ -41,7 +52,15 @@ public class ShopItemDrag : MonoBehaviour, IEndDragHandler, IDragHandler
         Color c = img.color;
         c.a = 0f;
         img.color = c;
+
+        //Debug.Log(other.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        //Debug.Log(Item.Prefab is GameObject);
+        Vector3 position = new Vector3(transform.position.x, transform.position.y);
+        position = Camera.main.ScreenToWorldPoint(position);
+        BuildingSystem.current.InitializeWithObject(Item.Prefab, position);
+
     }
+
     private void OnEnable()
     {
         drag = false;

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8676fc106eda0da4e848dbae364e7801, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  Name: Food farm lvl.1
-  Description: Produces 100 wheet evry 10 seconds.
+  Name: tsese
+  Description: asdada
   Level: 0
   Price: 99
   Currency: 0
   Type: 0
   Icon: {fileID: 21300000, guid: 2749c9f9a3d565341bf72b6d5e6faae0, type: 3}
-  Prefab: {fileID: 4231715511173852847, guid: 64b870cd1cb002d4cb1d17a82e844d73, type: 3}
+  Prefab: {fileID: 2045793915996940165, guid: fa60aad91488c5247b8bb3a6cc9f6355, type: 3}

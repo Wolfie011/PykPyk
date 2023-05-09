@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LevelSystem : MonoBehaviour
 {
     private int XPNow;
-    private int Level;
+    public static int Level;
     private int xpToNext;
 
     [SerializeField] private GameObject levelPanel;
@@ -54,7 +54,7 @@ public class LevelSystem : MonoBehaviour
                 }
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Debug.Log(ex.Message);
         }
@@ -83,7 +83,7 @@ public class LevelSystem : MonoBehaviour
     }
     private void UpdateUI()
     {
-        float fill = (float) XPNow / xpToNext;
+        float fill = (float)XPNow / xpToNext;
         slider.value = fill;
         xpText.text = XPNow + "/" + xpToNext;
     }
@@ -91,7 +91,7 @@ public class LevelSystem : MonoBehaviour
     {
         XPNow += info.amount;
         UpdateUI();
-        if(XPNow >= xpToNext)
+        if (XPNow >= xpToNext)
         {
             Level++;
             LevelChangedGameEvent levelChange = new LevelChangedGameEvent(Level);
@@ -118,9 +118,4 @@ public class LevelSystem : MonoBehaviour
         EventManager.Instance.QueueEvent(currencyInfo);
 
     }
-    public int GetLevel()
-    {
-        return Level;
-    }
-
 }
