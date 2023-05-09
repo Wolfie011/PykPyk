@@ -63,9 +63,11 @@ public class PlacableObject : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 time = 0;
-            }else if (Input.GetMouseButton(0))
+            }
+            else if (Input.GetMouseButton(0))
             {
                 time += Time.deltaTime;
+
                 if(time > 3f)
                 {
                     touching = true;

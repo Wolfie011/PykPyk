@@ -27,6 +27,8 @@ public class ShopItemDrag : MonoBehaviour, IEndDragHandler, IDragHandler
 
         img = GetComponent<Image>();
         orginPos = rt.anchoredPosition;
+
+        BuildingSystem.current = FindObjectOfType<BuildingSystem>();
     }
 
     public void OnBeingDrag(PointerEventData eventData)
@@ -55,9 +57,10 @@ public class ShopItemDrag : MonoBehaviour, IEndDragHandler, IDragHandler
 
         //Debug.Log(other.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         //Debug.Log(Item.Prefab is GameObject);
+        GameObject temp = Item.Prefab;
         Vector3 position = new Vector3(transform.position.x, transform.position.y);
         position = Camera.main.ScreenToWorldPoint(position);
-        BuildingSystem.current.InitializeWithObject(Item.Prefab, position);
+        BuildingSystem.current.InitializeWithObject(temp, position);
 
     }
 
