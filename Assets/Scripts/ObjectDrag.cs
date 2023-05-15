@@ -23,6 +23,8 @@ public class ObjectDrag : MonoBehaviour
 
         Vector3Int cellPos = BuildingSystem.current.gridLayout.WorldToCell(pos);
         transform.position = BuildingSystem.current.gridLayout.CellToLocalInterpolated(cellPos);
+
+        PanZoom.current.FollowObject(gameObject.transform);
     }
     private void LateUpdate()
     {
@@ -30,6 +32,7 @@ public class ObjectDrag : MonoBehaviour
         {
             gameObject.GetComponent<PlacableObject>().CheckPlacement();
             Destroy(this);
+            PanZoom.current.UnFollowObject();
         }
     }
 }

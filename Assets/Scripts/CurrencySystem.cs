@@ -21,14 +21,37 @@ public class CurrencySystem : MonoBehaviour
     }
     private void Start()
     {
+        CurrencyAmounts[CurrencyType.Coins] = 100;
+        CurrencyAmounts[CurrencyType.Crystals] = 10;
+
         EventManager.Instance.AddListener<CurrencyChangeGameEvent>(OnCurrencyChange);
         EventManager.Instance.AddListener<NotEnoughCurrencyGameEvent>(OnNotEnough);
+    }
+    private void UpdateUI()
+    {
+        for(int i = 0; i < texts.Count; i++)
+        {
+            currencyTexts[(CurrencyType)i].text = CurrencyAmounts[(CurrencyType)i].ToString();
+        }
     }
     private void OnCurrencyChange(CurrencyChangeGameEvent info)
     {
         //TODO SAVE THE CURRENCY
+
+        if(info.amount < 0)
+        {
+            if(CurrencyAmounts[info.currencyType] < Mathf.Abs(info.amount))
+            {
+                EventManager.Instance.QueueEvent(new NotEnoughCurrencyGameEvent(info.amount, info.currencyType));
+                return;
+            }
+            EventManager.Instance.QueueEvent(new EnoughCurrencyGameEvent());
+        }
+
         CurrencyAmounts[info.currencyType] += info.amount;
         currencyTexts[info.currencyType].text = CurrencyAmounts[info.currencyType].ToString();
+
+        UpdateUI();
     }
     private void OnNotEnough(NotEnoughCurrencyGameEvent info)
     {

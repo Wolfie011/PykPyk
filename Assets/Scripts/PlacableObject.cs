@@ -5,9 +5,14 @@ using UnityEngine;
 public class PlacableObject : MonoBehaviour
 {
     public bool Placed { get; private set; }
+    private PlacableObject current;
     private Vector3 origin;
     public BoundsInt area;
 
+    private void Awake()
+    {
+        current = this;
+    }
     public bool CanBePlaced()
     {
         Vector3Int positionInt = BuildingSystem.current.gridLayout.LocalToCell(transform.position);
@@ -20,8 +25,13 @@ public class PlacableObject : MonoBehaviour
         Vector3Int positionInt = BuildingSystem.current.gridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
+
         Placed = true;
+        origin = transform.position;
+
         BuildingSystem.current.TakeArea(areaTemp);
+
+        PanZoom.current.UnFollowObject();
     }
     public void CheckPlacement()
     {
@@ -58,7 +68,7 @@ public class PlacableObject : MonoBehaviour
 
     private void Update()
     {
-        if(!touching && Placed)
+        if (!touching && Placed)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -68,20 +78,23 @@ public class PlacableObject : MonoBehaviour
             {
                 time += Time.deltaTime;
 
-                if(time > 3f)
+                if (time > 2f)
                 {
-                    touching = true;
-                    gameObject.AddComponent<ObjectDrag>();
+                    if (!gameObject.GetComponent<ObjectDrag>())
+                    {
+                        touching = true;
+                        current.gameObject.AddComponent<ObjectDrag>();
 
-                    Vector3Int positionInt = BuildingSystem.current.gridLayout.WorldToCell(transform.position);
-                    BoundsInt areaTemp = area;
-                    areaTemp.position = positionInt;
+                        Vector3Int positionInt = BuildingSystem.current.gridLayout.WorldToCell(transform.position);
+                        BoundsInt areaTemp = area;
+                        areaTemp.position = positionInt;
 
-                    BuildingSystem.current.ClearArea(areaTemp, BuildingSystem.current.MainTilemap);
+                        BuildingSystem.current.ClearArea(areaTemp, BuildingSystem.current.MainTilemap);
+                    }
                 }
             }
         }
-        if(touching && Input.GetMouseButton(0))
+        if (touching && Input.GetMouseButton(0))
         {
             touching = false;
         }

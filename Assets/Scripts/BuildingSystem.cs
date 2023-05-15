@@ -12,6 +12,11 @@ public class BuildingSystem : MonoBehaviour
     public Tilemap MainTilemap;
     public TileBase takenTile;
 
+    private void Awake()
+    {
+        current = this;
+    }
+
     #region Tilemap Managment
 
     private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
@@ -19,7 +24,7 @@ public class BuildingSystem : MonoBehaviour
         TileBase[] array = new TileBase[area.size.x * area.size.y];
         int counter = 0;
 
-        foreach(var v in area.allPositionsWithin)
+        foreach (var v in area.allPositionsWithin)
         {
             Vector3Int pos = new Vector3Int(v.x, v.y, 0);
             array[counter] = tilemap.GetTile(pos);
@@ -36,7 +41,7 @@ public class BuildingSystem : MonoBehaviour
 
     private static void FillTiles(TileBase[] arr, TileBase tileBase)
     {
-        for(int i = 0; i < arr.Length; i++)
+        for (int i = 0; i < arr.Length; i++)
         {
             arr[i] = tileBase;
         }
@@ -53,21 +58,23 @@ public class BuildingSystem : MonoBehaviour
     public void InitializeWithObject(GameObject building, Vector3 pos)
     {
         pos.z = 0;
-        pos.y = building.GetComponent<SpriteRenderer>().bounds.size.y / 2f;
+        pos.y = building.GetComponentInChildren<SpriteRenderer>().bounds.size.y / 2f;
         Vector3Int cellPos = gridLayout.WorldToCell(pos);
         Vector3 position = gridLayout.CellToLocalInterpolated(cellPos);
 
         GameObject obj = Instantiate(building, position, Quaternion.identity);
         PlacableObject temp = obj.transform.GetComponent<PlacableObject>();
         temp.gameObject.AddComponent<ObjectDrag>();
+
+        PanZoom.current.FollowObject(obj.transform);
     }
 
     public bool CanTakeArea(BoundsInt area)
     {
         TileBase[] baseArray = GetTilesBlock(area, MainTilemap);
-        foreach(var b in baseArray)
+        foreach (var b in baseArray)
         {
-            if(b == takenTile)
+            if (b == takenTile)
             {
                 return false;
             }
