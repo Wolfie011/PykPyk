@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8676fc106eda0da4e848dbae364e7801, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
-  Name: Food Farm LVL 2
-  Description: 180wheet/s
-  Level: 1
-  Price: 299
+  Name: food farm lvl.2
+  Description: 150/sec
+  Level: 0
+  Price: 129
   Currency: 0
-  Type: 0
-  Icon: {fileID: 21300000, guid: 7c55f8f1e798d4e4f8a43536cd553719, type: 3}
-  Prefab: {fileID: 8811487436265861274, guid: c4ac02dd9cee14b439623ccb97069221, type: 3}
+  Type: 2
+  Icon: {fileID: 21300000, guid: 2749c9f9a3d565341bf72b6d5e6faae0, type: 3}
+  Prefab: {fileID: 7097523433713144846, guid: c626a0b65624fd0469c904368b18f4f1, type: 3}

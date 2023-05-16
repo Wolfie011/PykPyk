@@ -43,8 +43,8 @@ public class ShopManager : MonoBehaviour
 
         shopItems.Add(ObjectType.Animals, new List<ShopItem>());
         shopItems.Add(ObjectType.AnimalHomes, new List<ShopItem>());
-        /*shopItems.Add(ObjectType.ProductionBuildings, new List<ShopItem>());
-        shopItems.Add(ObjectType.TreesBshes, new List<ShopItem>());
+        shopItems.Add(ObjectType.ProductionBuildings, new List<ShopItem>());
+        /*shopItems.Add(ObjectType.TreesBshes, new List<ShopItem>());
         shopItems.Add(ObjectType.Decorations, new List<ShopItem>());*/
 
         foreach(var item in items)

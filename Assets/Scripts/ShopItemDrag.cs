@@ -53,10 +53,10 @@ public class ShopItemDrag : MonoBehaviour, IEndDragHandler, IDragHandler
         c.a = 0f;
         img.color = c;
 
-        GameObject temp = Item.Prefab;
         Vector3 position = new Vector3(transform.position.x, transform.position.y);
         position = Camera.main.ScreenToWorldPoint(position);
-        BuildingSystem.current.InitializeWithObject(temp, position);
+
+        BuildingSystem.current.InitializeWithObject(Item.Prefab, position);
 
     }
 

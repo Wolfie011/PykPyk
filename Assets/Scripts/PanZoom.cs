@@ -16,6 +16,7 @@ public class PanZoom : MonoBehaviour
     [SerializeField] private float zoomMax;
 
     private Camera cam;
+
     private bool moveAllowed;
     private Vector3 touchPos;
 
@@ -106,6 +107,11 @@ public class PanZoom : MonoBehaviour
             }
         }
     }
+    public void Log()
+    {
+        Debug.Log(objectToFollow);
+        Debug.Log(prevPos);
+    }
     private void Zoom(float increment)
     {
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - increment, zoomMin, zoomMax);
@@ -113,13 +119,14 @@ public class PanZoom : MonoBehaviour
     public void FollowObject(Transform objToFollow)
     {
         objectToFollow = objToFollow;
-        objectBounds = objectToFollow.GetComponentInChildren<PolygonCollider2D>().bounds;
+        objectBounds = objectToFollow.GetComponent<PolygonCollider2D>().bounds;
         prevPos = cam.ScreenToWorldPoint(Vector3.zero);
     }
     public void UnFollowObject()
     {
         objectToFollow = null;
     }
+
     public void Focus(Vector3 position)
     {
         Vector3 newPos = new Vector3(position.x, position.y, transform.position.z);

@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlacableObject : MonoBehaviour
 {
+    public static PlacableObject current;
     public bool Placed { get; private set; }
-    private PlacableObject current;
     private Vector3 origin;
+
     public BoundsInt area;
+
+    private string UUID;
 
     private void Awake()
     {
@@ -18,12 +22,14 @@ public class PlacableObject : MonoBehaviour
         Vector3Int positionInt = BuildingSystem.current.gridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
+
         return BuildingSystem.current.CanTakeArea(areaTemp);
     }
-    public void Place()
+    public virtual void Place()
     {
         Vector3Int positionInt = BuildingSystem.current.gridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = area;
+        UUID = GenerateUUID();
         areaTemp.position = positionInt;
 
         Placed = true;
@@ -62,39 +68,57 @@ public class PlacableObject : MonoBehaviour
             }
         }
     }
+    public static string GenerateUUID()
+    {
+        // Generate a random GUID
+        Guid guid = Guid.NewGuid();
 
-    private float time = 0f;
-    private bool touching;
+        // Convert the GUID to a string representation
+        string uuid = guid.ToString();
 
+        // Remove hyphens and convert to lowercase
+        uuid = uuid.Replace("-", "").ToLower();
+
+        return uuid;
+    }
+
+
+    private void OnMouseDown()
+    {
+        Debug.Log(gameObject.transform.GetComponent<PlacableObject>().UUID);
+    }
+
+    private bool touching = false;
+    private float touchTime = 0f;
     private void Update()
     {
-        if (!touching && Placed)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            touching = true;
+            touchTime = 0f;
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            if (touching)
             {
-                time = 0;
-            }
-            else if (Input.GetMouseButton(0))
-            {
-                time += Time.deltaTime;
+                touchTime += Time.deltaTime;
 
-                if (time > 2f)
+                if (touchTime > 3.0f)
                 {
-                    if (!gameObject.GetComponent<ObjectDrag>())
-                    {
-                        touching = true;
-                        current.gameObject.AddComponent<ObjectDrag>();
+                    if (current.gameObject.GetComponent<ObjectDrag>()) { return; }
+                    touching = true;
+                    current.gameObject.AddComponent<ObjectDrag>();
+                    PanZoom.current.FollowObject(gameObject.transform);
 
-                        Vector3Int positionInt = BuildingSystem.current.gridLayout.WorldToCell(transform.position);
-                        BoundsInt areaTemp = area;
-                        areaTemp.position = positionInt;
+                    Vector3Int positionInt = BuildingSystem.current.gridLayout.WorldToCell(current.transform.position);
+                    BoundsInt areaTemp = current.area;
+                    areaTemp.position = positionInt;
 
-                        BuildingSystem.current.ClearArea(areaTemp, BuildingSystem.current.MainTilemap);
-                    }
+                    BuildingSystem.current.ClearArea(areaTemp, BuildingSystem.current.MainTilemap);
                 }
             }
         }
-        if (touching && Input.GetMouseButton(0))
+        else if (Input.GetMouseButtonUp(0))
         {
             touching = false;
         }

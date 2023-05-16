@@ -11,6 +11,7 @@ public class ObjectDrag : MonoBehaviour
     {
         startPos = Input.mousePosition;
         startPos = Camera.main.ScreenToWorldPoint(startPos);
+
         deltaX = startPos.x - transform.position.x;
         deltaY = startPos.y - transform.position.y;
     }
@@ -24,7 +25,7 @@ public class ObjectDrag : MonoBehaviour
         Vector3Int cellPos = BuildingSystem.current.gridLayout.WorldToCell(pos);
         transform.position = BuildingSystem.current.gridLayout.CellToLocalInterpolated(cellPos);
 
-        PanZoom.current.FollowObject(gameObject.transform);
+        //PanZoom.current.FollowObject(gameObject.transform);
     }
     private void LateUpdate()
     {
@@ -32,7 +33,7 @@ public class ObjectDrag : MonoBehaviour
         {
             gameObject.GetComponent<PlacableObject>().CheckPlacement();
             Destroy(this);
-            PanZoom.current.UnFollowObject();
+            //PanZoom.current.UnFollowObject();
         }
     }
 }

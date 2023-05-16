@@ -58,7 +58,7 @@ public class BuildingSystem : MonoBehaviour
     public void InitializeWithObject(GameObject building, Vector3 pos)
     {
         pos.z = 0;
-        pos.y = building.GetComponentInChildren<SpriteRenderer>().bounds.size.y / 2f;
+        pos.y -= building.GetComponentInChildren<SpriteRenderer>().bounds.size.y / 2f;
         Vector3Int cellPos = gridLayout.WorldToCell(pos);
         Vector3 position = gridLayout.CellToLocalInterpolated(cellPos);
 
