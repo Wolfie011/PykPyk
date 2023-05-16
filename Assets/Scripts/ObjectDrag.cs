@@ -25,15 +25,15 @@ public class ObjectDrag : MonoBehaviour
         Vector3Int cellPos = BuildingSystem.current.gridLayout.WorldToCell(pos);
         transform.position = BuildingSystem.current.gridLayout.CellToLocalInterpolated(cellPos);
 
-        //PanZoom.current.FollowObject(gameObject.transform);
+       //PanZoom.current.FollowObject(gameObject.transform);
     }
     private void LateUpdate()
     {
         if (Input.GetMouseButtonUp(0))
         {
             gameObject.GetComponent<PlacableObject>().CheckPlacement();
-            Destroy(this);
             //PanZoom.current.UnFollowObject();
+            Destroy(this);
         }
     }
 }

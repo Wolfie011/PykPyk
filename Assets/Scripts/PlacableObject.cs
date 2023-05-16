@@ -11,7 +11,7 @@ public class PlacableObject : MonoBehaviour
 
     public BoundsInt area;
 
-    private string UUID;
+    //private string UUID = null;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class PlacableObject : MonoBehaviour
     {
         Vector3Int positionInt = BuildingSystem.current.gridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = area;
-        UUID = GenerateUUID();
+        //UUID = GenerateUUID();
         areaTemp.position = positionInt;
 
         Placed = true;
@@ -68,7 +68,7 @@ public class PlacableObject : MonoBehaviour
             }
         }
     }
-    public static string GenerateUUID()
+    /*public static string GenerateUUID()
     {
         // Generate a random GUID
         Guid guid = Guid.NewGuid();
@@ -85,8 +85,8 @@ public class PlacableObject : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log(gameObject.transform.GetComponent<PlacableObject>().UUID);
-    }
+        //Debug.Log(gameObject.transform.GetComponent<PlacableObject>().UUID);
+    }*/
 
     private bool touching = false;
     private float touchTime = 0f;
@@ -108,7 +108,7 @@ public class PlacableObject : MonoBehaviour
                     if (current.gameObject.GetComponent<ObjectDrag>()) { return; }
                     touching = true;
                     current.gameObject.AddComponent<ObjectDrag>();
-                    PanZoom.current.FollowObject(gameObject.transform);
+                    PanZoom.current.FollowObject(current.gameObject.transform);
 
                     Vector3Int positionInt = BuildingSystem.current.gridLayout.WorldToCell(current.transform.position);
                     BoundsInt areaTemp = current.area;
