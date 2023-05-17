@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6563166631145525302}
   - component: {fileID: 2492062785261704253}
   - component: {fileID: 4368109621028781639}
-  - component: {fileID: 5414189466124019774}
+  - component: {fileID: -4862589527584851509}
   m_Layer: 0
   m_Name: food_farm_lvl1
-  m_TagString: Untagged
+  m_TagString: Placable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,9 +72,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1525953907
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2749c9f9a3d565341bf72b6d5e6faae0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -228,7 +228,7 @@ PolygonCollider2D:
       - {x: -0.45999998, y: 0.049999997}
       - {x: -0.48, y: 0.049999997}
   m_UseDelaunayMesh: 0
---- !u!114 &5414189466124019774
+--- !u!114 &-4862589527584851509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

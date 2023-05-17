@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PanZoom : MonoBehaviour
@@ -31,10 +29,10 @@ public class PanZoom : MonoBehaviour
     }
     private void Update()
     {
-        if(objectToFollow != null)
+        if (objectToFollow != null)
         {
             Vector3 objPos = cam.WorldToViewportPoint(objectToFollow.position + objectBounds.max);
-            if(objPos.x >= 0.7f || objPos.x <= 0.3f || objPos.y >= 0.7f || objPos.y <= 0.3f)
+            if (objPos.x >= 0.7f || objPos.x <= 0.3f || objPos.y >= 0.7f || objPos.y <= 0.3f)
             {
                 Vector3 pos = cam.ScreenToWorldPoint(objectToFollow.position);
                 Vector3 direction = pos - prevPos;
@@ -56,7 +54,7 @@ public class PanZoom : MonoBehaviour
             return;
         }
 
-        if(Input.touchCount > 0)
+        if (Input.touchCount > 0)
         {
             if (Input.touchCount == 2)
             {
@@ -125,20 +123,6 @@ public class PanZoom : MonoBehaviour
     public void UnFollowObject()
     {
         objectToFollow = null;
-    }
-
-    public void Focus(Vector3 position)
-    {
-        Vector3 newPos = new Vector3(position.x, position.y, transform.position.z);
-        LeanTween.move(gameObject, newPos, 0.2f);
-
-        transform.position = new Vector3
-                                (
-                                Mathf.Clamp(transform.position.x, leftLimit, rightLimit),
-                                Mathf.Clamp(transform.position.y, bottomLimit, upperLimit),
-                                transform.position.z
-                                );
-        touchPos = transform.position;
     }
     private void OnDrawGizmos()
     {

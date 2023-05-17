@@ -56,7 +56,7 @@ public class ShopItemDrag : MonoBehaviour, IEndDragHandler, IDragHandler
         Vector3 position = new Vector3(transform.position.x, transform.position.y);
         position = Camera.main.ScreenToWorldPoint(position);
 
-        BuildingSystem.current.InitializeWithObject(Item.Prefab, position);
+        GridBuildingSystem.current.InitializeWithBuilding(Item.Prefab, position);
 
     }
 
