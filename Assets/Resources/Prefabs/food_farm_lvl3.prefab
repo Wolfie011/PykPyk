@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3029206334383958668}
   - component: {fileID: 6752101258959125934}
   - component: {fileID: 5017541507716309039}
-  - component: {fileID: 3316625053438114935}
+  - component: {fileID: 5816559225353463}
   m_Layer: 0
   m_Name: food_farm_lvl3
   m_TagString: Placable
@@ -249,7 +249,7 @@ PolygonCollider2D:
       - {x: 0.31428573, y: 1.5285715}
       - {x: 0.32857144, y: 1.5285715}
   m_UseDelaunayMesh: 0
---- !u!114 &3316625053438114935
+--- !u!114 &5816559225353463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class ObjectDrag : MonoBehaviour
 {
@@ -9,7 +11,6 @@ public class ObjectDrag : MonoBehaviour
     {
         startPos = Input.mousePosition;
         startPos = Camera.main.ScreenToWorldPoint(startPos);
-
         deltaX = startPos.x - transform.position.x;
         deltaY = startPos.y - transform.position.y;
     }
@@ -20,8 +21,8 @@ public class ObjectDrag : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 pos = new Vector3(mousePos.x - deltaX, mousePos.y - deltaY);
 
-        Vector3Int cellPos = GridBuildingSystem.current.gridLayout.WorldToCell(pos);
-        transform.position = GridBuildingSystem.current.gridLayout.CellToLocalInterpolated(cellPos);
+        Vector3Int cellPos = BuildingSystem.current.gridLayout.WorldToCell(pos);
+        transform.position = BuildingSystem.current.gridLayout.CellToLocalInterpolated(cellPos);
 
         PanZoom.current.FollowObject(gameObject.transform);
     }
@@ -29,9 +30,9 @@ public class ObjectDrag : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            gameObject.GetComponent<PlacableObject>().CanBePlaced();
-            PanZoom.current.UnFollowObject();
+            gameObject.GetComponent<PlacableObject>().CheckPlacement();
             Destroy(this);
+            PanZoom.current.UnFollowObject();
         }
     }
 }

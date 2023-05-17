@@ -1,38 +1,38 @@
-﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlacableObject : MonoBehaviour
 {
-    private static PlacableObject instance;
     public bool Placed { get; private set; }
-    public BoundsInt area;
+    private PlacableObject current;
     private Vector3 origin;
+    public BoundsInt area;
 
     private void Awake()
     {
-        instance = this;
+        current = this;
     }
-
     public bool CanBePlaced()
     {
-        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
+        Vector3Int positionInt = BuildingSystem.current.gridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
-
-        return GridBuildingSystem.current.CanTakeArea(areaTemp);
+        return BuildingSystem.current.CanTakeArea(areaTemp);
     }
     public void Place()
     {
-        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
+        Vector3Int positionInt = BuildingSystem.current.gridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
+
         Placed = true;
-        GridBuildingSystem.current.TakeArea(areaTemp);
+        origin = transform.position;
+
+        BuildingSystem.current.TakeArea(areaTemp);
+
         PanZoom.current.UnFollowObject();
     }
-
     public void CheckPlacement()
     {
         if (!Placed)
@@ -63,38 +63,46 @@ public class PlacableObject : MonoBehaviour
         }
     }
 
-    private bool touching;
-    private float touchTime = 0f;
-    public void Update()
+    private void OnMouseDown()
     {
-        if(!touching && Placed)
+        Debug.Log(gameObject.name);
+        clickedUUID = gameObject.name;
+
+    }
+    private string clickedUUID;
+    private float touchTime = 0f;
+    private bool touching;
+
+    private void Update()
+    {
+        if (!touching && Placed && gameObject.CompareTag("Placable"))
         {
             if (Input.GetMouseButtonDown(0))
             {
-                touchTime = 0f;
+                touchTime = 0;
             }
             else if (Input.GetMouseButton(0))
             {
                 touchTime += Time.deltaTime;
 
-                if (touchTime > 1.5f)
+                if (touchTime > 3.0f)
                 {
-                    if (gameObject.GetComponent<ObjectDrag>()) { return; }
+                    if (current.gameObject.GetComponent<ObjectDrag>()) { return; }
                     touching = true;
-                    gameObject.AddComponent<ObjectDrag>();
-                    PanZoom.current.FollowObject(gameObject.transform);
+                    current.gameObject.AddComponent<ObjectDrag>();
+                    PanZoom.current.FollowObject(current.gameObject.transform);
 
-                    //GridBuildingSystem.current.FollowBuilding();
-
-                    Vector3Int positionInt = GridBuildingSystem.current.gridLayout.WorldToCell(transform.position);
-                    BoundsInt areaTemp = area;
+                    Vector3Int positionInt = BuildingSystem.current.gridLayout.WorldToCell(current.transform.position);
+                    BoundsInt areaTemp = current.area;
                     areaTemp.position = positionInt;
+
+                    BuildingSystem.current.ClearArea(areaTemp, BuildingSystem.current.MainTilemap);
                 }
             }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                touching = false;
-            }
+        }
+        if (touching && Input.GetMouseButtonUp(0))
+        {
+            touching = false;
         }
     }
 }

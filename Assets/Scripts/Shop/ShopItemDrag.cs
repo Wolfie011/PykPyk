@@ -53,11 +53,29 @@ public class ShopItemDrag : MonoBehaviour, IEndDragHandler, IDragHandler
         c.a = 0f;
         img.color = c;
 
+
+        EventManager.Instance.AddListenerOnce<EnoughCurrencyGameEvent>(OnEnoughCurrency);
+        EventManager.Instance.AddListenerOnce<NotEnoughCurrencyGameEvent>(OnNotEnoughCurrency);
+        CurrencyChangeGameEvent info = new CurrencyChangeGameEvent(-Item.Price, Item.Currency);
+        EventManager.Instance.QueueEvent(info);
+
+    }
+
+    private void Buy()
+    {
         Vector3 position = new Vector3(transform.position.x, transform.position.y);
         position = Camera.main.ScreenToWorldPoint(position);
-
-        GridBuildingSystem.current.InitializeWithBuilding(Item.Prefab, position);
-
+        BuildingSystem.current.InitializeWithObject(Item.Prefab, position);
+    }
+    private void OnEnoughCurrency(EnoughCurrencyGameEvent info)
+    {
+        Buy();
+        EventManager.Instance.RemoveListener<NotEnoughCurrencyGameEvent>(OnNotEnoughCurrency);
+    }
+    private void OnNotEnoughCurrency(NotEnoughCurrencyGameEvent info)
+    {
+        Debug.Log("Niestaæ mnie");
+        EventManager.Instance.RemoveListener<EnoughCurrencyGameEvent>(OnEnoughCurrency);
     }
 
     private void OnEnable()

@@ -15,7 +15,7 @@ public class ShopManager : MonoBehaviour
     private bool opened;
 
     [SerializeField] private GameObject itemPrefab;
-    private Dictionary<ObjectType, List<ShopItem>> shopItems = new Dictionary<ObjectType, List<ShopItem>>(2);
+    private Dictionary<ObjectType, List<ShopItem>> shopItems = new Dictionary<ObjectType, List<ShopItem>>(3);
 
     [SerializeField] public TabGroup shopTabs;
 
