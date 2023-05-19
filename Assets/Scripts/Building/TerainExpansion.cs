@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class TerainExpansion : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public BoundsInt area;
+    private bool toogleWindow;
+    private GameObject WindowFab;
+    private int lvlUnlockable;
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDown()
     {
-        
+        if (toogleWindow) return;
+        else
+        {
+            toogleWindow = true;
+        }
+    }
+    private void Update()
+    {
+        if (toogleWindow)
+        {
+            WindowFab.SetActive(true);
+
+        }
     }
 }

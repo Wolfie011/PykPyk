@@ -14,7 +14,6 @@ public class PanZoom : MonoBehaviour
     [SerializeField] private float zoomMax;
 
     private Camera cam;
-
     private bool moveAllowed;
     private Vector3 touchPos;
 

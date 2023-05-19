@@ -12,6 +12,8 @@ public class BuildingSystem : MonoBehaviour
     public Tilemap MainTilemap;
     public TileBase takenTile;
 
+    public GameObject selectedBuilding;
+
     private void Awake()
     {
         current = this;
