@@ -65,7 +65,7 @@ public class ShopItemDrag : MonoBehaviour, IEndDragHandler, IDragHandler
     {
         Vector3 position = new Vector3(transform.position.x, transform.position.y);
         position = Camera.main.ScreenToWorldPoint(position);
-        BuildingSystem.current.InitializeWithObject(Item.Prefab, position);
+        GridBuildingSystem.current.InitializeWithBuilding(Item.Prefab, position);
     }
     private void OnEnoughCurrency(EnoughCurrencyGameEvent info)
     {
@@ -74,7 +74,6 @@ public class ShopItemDrag : MonoBehaviour, IEndDragHandler, IDragHandler
     }
     private void OnNotEnoughCurrency(NotEnoughCurrencyGameEvent info)
     {
-        Debug.Log("Niestaæ mnie");
         EventManager.Instance.RemoveListener<EnoughCurrencyGameEvent>(OnEnoughCurrency);
     }
 

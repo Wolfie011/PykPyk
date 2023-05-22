@@ -6,6 +6,12 @@ public class ObjectDrag : MonoBehaviour
 {
     private Vector3 startPos;
     private float deltaX, deltaY;
+    public static ObjectDrag current;
+
+    private void Awake()
+    {
+        current = this;
+    }
 
     void Start()
     {
@@ -15,24 +21,22 @@ public class ObjectDrag : MonoBehaviour
         deltaY = startPos.y - transform.position.y;
     }
 
-
     void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 pos = new Vector3(mousePos.x - deltaX, mousePos.y - deltaY);
 
-        Vector3Int cellPos = BuildingSystem.current.gridLayout.WorldToCell(pos);
-        transform.position = BuildingSystem.current.gridLayout.CellToLocalInterpolated(cellPos);
+        Vector3Int cellPos = GridBuildingSystem.current.gridLayout.WorldToCell(pos);
+        transform.position = GridBuildingSystem.current.gridLayout.CellToLocalInterpolated(cellPos);
 
-        PanZoom.current.FollowObject(gameObject.transform);
+        GridBuildingSystem.current.FollowBuilding();
     }
     private void LateUpdate()
     {
         if (Input.GetMouseButtonUp(0))
         {
-            gameObject.GetComponent<PlacableObject>().CheckPlacement();
+            gameObject.GetComponent<Building>().CanBePlaced();
             Destroy(this);
-            PanZoom.current.UnFollowObject();
         }
     }
 }
