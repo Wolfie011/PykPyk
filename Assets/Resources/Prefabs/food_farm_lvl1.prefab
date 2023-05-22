@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6563166631145525302}
   - component: {fileID: 2492062785261704253}
   - component: {fileID: 4368109621028781639}
-  - component: {fileID: 7268190407336799113}
+  - component: {fileID: -1768437265224394223}
   m_Layer: 0
   m_Name: food_farm_lvl1
   m_TagString: Placable
@@ -121,7 +121,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.19}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.5, y: 2.5}
     newSize: {x: 5, y: 5}
     adaptiveTilingThreshold: 0.5
@@ -228,7 +228,7 @@ PolygonCollider2D:
       - {x: -0.45999998, y: 0.049999997}
       - {x: -0.48, y: 0.049999997}
   m_UseDelaunayMesh: 0
---- !u!114 &7268190407336799113
+--- !u!114 &-1768437265224394223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,10 +237,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7097523433713144846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a4292540df75234da96ced5a2e06887, type: 3}
+  m_Script: {fileID: 11500000, guid: 351f8623256bdc040bfddfbb932f5c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 3, y: 3, z: 1}
-  buildingPanel: {fileID: 0}
