@@ -72,6 +72,7 @@ public class GridBuildingSystem : MonoBehaviour
         {
             temp.Place();
             panelEdit.enabled = false;
+            temp = null;
         }
     }
     public void DestroyPref()
@@ -79,11 +80,13 @@ public class GridBuildingSystem : MonoBehaviour
         ClearArea();
         Destroy(temp.gameObject);
         panelEdit.enabled = false;
+        temp = null;
     }
 
     public void HideBuildingPanel()
     {
         buildingPanel.enabled = false;
+        temp = null;
     }
 
     public void SetPlacedFalse()

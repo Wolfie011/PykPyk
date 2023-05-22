@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-    private Building current;
+    public Building current;
     public bool Placed; //{ get; private set; }
     public BoundsInt area;
 
@@ -34,18 +34,10 @@ public class Building : MonoBehaviour
 
     private void OnMouseDown()
     {
-        /*if(GridBuildingSystem.current.temp == null)
-        {
-            Placed = false;
-            GridBuildingSystem.current.panelEdit.enabled = true;
-            GridBuildingSystem.current.ClearMoved(current.area);
-            GridBuildingSystem.current.temp = current;
-        }*/
-        if(GridBuildingSystem.current.temp == null)
+       /* if(GridBuildingSystem.current.temp == null)
         {
             GridBuildingSystem.current.buildingPanel.enabled = true;
             GridBuildingSystem.current.temp = current;
-        }
-
+        }*/
     }
 }

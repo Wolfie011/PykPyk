@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class BuildingWithTimer : Building
 {
+    private void Update()
+    {
+        if (!current.Placed)
+        {
+            TimerTooltip.HideTimer_Static();
+        }
+    }
     public override void Place()
     {
         base.Place();
@@ -18,6 +25,15 @@ public class BuildingWithTimer : Building
     }
     private void OnMouseUpAsButton()
     {
-        //TimerTooltip.ShowTimer_Static(gameObject);
+        if (Placed && GridBuildingSystem.current.temp == null)
+        {
+            TimerTooltip.ShowTimer_Static(current.gameObject);
+        }
+        if (GridBuildingSystem.current.temp == null)
+        {
+            GridBuildingSystem.current.buildingPanel.enabled = true;
+            GridBuildingSystem.current.temp = current;
+        }
     }
 }
+
