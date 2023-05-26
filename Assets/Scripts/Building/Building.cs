@@ -1,43 +1,42 @@
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class Building : PlaceableObject
 {
-    public Building current;
-    public bool Placed; //{ get; private set; }
-    public BoundsInt area;
-
-    private void Awake()
+    //bool to check if the building is already built
+    protected bool built;
+    
+    public override void Place()
     {
-        current = this;
-    }
-
-    #region Build Methods
-    public bool CanBePlaced()
-    {
-        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
-        BoundsInt areaTemp = area;
-        areaTemp.position = positionInt;
-
-        return GridBuildingSystem.current.CanTakeArea(areaTemp);
-    }
-    public virtual void Place()
-    {
-        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
-        BoundsInt areaTemp = area;
-        areaTemp.position = positionInt;
-        Placed = true;
-        GridBuildingSystem.current.TakeArea(areaTemp);
-    }
-    #endregion
-
-    private void OnMouseDown()
-    {
-       /* if(GridBuildingSystem.current.temp == null)
+        base.Place();
+        
+        //add timer to the object
+        Timer timer = gameObject.AddComponent<Timer>();
+        //initialize timer - name of the process, starting time now, duration 3 minutes
+        timer.Initialize("Building", DateTime.Now, TimeSpan.FromMinutes(3));
+        //start the timer
+        timer.StartTimer();
+        //when the timer finished destroy it
+        timer.TimerFinishedEvent.AddListener(delegate
         {
-            GridBuildingSystem.current.buildingPanel.enabled = true;
-            GridBuildingSystem.current.temp = current;
-        }*/
+            built = true;
+            Destroy(timer);
+        });
+    }
+
+    protected override void OnClick()
+    {
+        if (!built)
+        {
+            //on object click - display the tooltip
+            TimerTooltip.ShowTimer_Static(gameObject);
+        }
+    }
+
+    private void OnMouseUpAsButton()
+    {
+        OnClick();
     }
 }
