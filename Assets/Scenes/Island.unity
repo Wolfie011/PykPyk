@@ -27013,8 +27013,7 @@ MonoBehaviour:
   questsContent: {fileID: 776006634}
   questHolder: {fileID: 6324669574306209890}
   CurrentQuests:
-  - {fileID: 11400000, guid: f28f06ba108438942a35646cb473eef2, type: 2}
-  - {fileID: 11400000, guid: 640e032102b945c41a48841c32e7e317, type: 2}
+  - {fileID: 11400000, guid: 754cbd31e71bf0c40925c2197ceb3515, type: 2}
 --- !u!114 &2132367028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27290,10 +27289,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuestWindow
       objectReference: {fileID: 0}
-    - target: {fileID: 7699160635096083608, guid: d2bf934f6f8c10e4faee1edd1ca96fb7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7699160635096083609, guid: d2bf934f6f8c10e4faee1edd1ca96fb7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -27377,10 +27372,6 @@ PrefabInstance:
     - target: {fileID: 7699160635096083609, guid: d2bf934f6f8c10e4faee1edd1ca96fb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7699160635427803628, guid: d2bf934f6f8c10e4faee1edd1ca96fb7, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

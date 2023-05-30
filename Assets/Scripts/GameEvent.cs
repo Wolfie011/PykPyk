@@ -50,6 +50,7 @@ public class LevelChangedGameEvent : GameEvent
         newLvl = currLvl;
     }
 }
+
 public class BuildingGameEvent : GameEvent
 {
     public string BuildingName;
@@ -58,12 +59,22 @@ public class BuildingGameEvent : GameEvent
     {
         BuildingName = name;
     }
-}public class PlantingGameEvent : GameEvent
+}
+public class PlantingGameEvent : GameEvent
 {
     public string PlantingName;
 
     public PlantingGameEvent(string name)
     {
         PlantingName = name;
+    }
+}
+public class HarvestingGameEvent : GameEvent
+{
+    public string HarvestingName;
+
+    public HarvestingGameEvent(string name)
+    {
+        HarvestingName = name;
     }
 }

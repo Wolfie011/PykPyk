@@ -23,6 +23,8 @@ public class Building : PlaceableObject
         {
             built = true;
             Destroy(timer);
+            EventManager.Instance.QueueEvent(new BuildingGameEvent(name));
+
         });
     }
 

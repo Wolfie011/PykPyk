@@ -121,9 +121,11 @@ public class Field : Building, ISource
 
     public void Collect()
     {
+        if(currentCrop != null)
+        {
+            EventManager.Instance.QueueEvent(new HarvestingGameEvent(currentCrop.Name));
+        }
         //todo add crop to storage
-
-
 
         //change the stage
         currentState = State.Empty;
@@ -131,5 +133,7 @@ public class Field : Building, ISource
         sr.sprite = emptyFieldSprite;
         //remove the current crop
         currentCrop = null;
+        
+
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlaceableObject : MonoBehaviour
 {
     private ShopItem item;
+    public String name;
     //if the building is placed or not
     public bool Placed { get; private set; }
     //position on which an object was placed
