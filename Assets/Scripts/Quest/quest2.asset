@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 356ae5053e0dbad4c8fdb62e628dd01d, type: 3}
+  m_Name: quest2
+  m_EditorClassIdentifier: 
+  Information:
+    Name: Plant first crop
+    Icon: {fileID: 21300000, guid: fa65b4657f7c78047a911a3fb6793147, type: 3}
+    Description: Lets get faming going!
+  Reward:
+    Currency: 15
+    XP: 30
+  Goals:
+  - {fileID: 6724575260780456194}
+--- !u!114 &6724575260780456194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac41e17674851eb4b91e9fcbd9f4dcb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RequiredAmount: 1
+  GoalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  Plant: Wheet

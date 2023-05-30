@@ -47,6 +47,7 @@ public class Distributor : UIDrag
     protected override void OnCollide(Building collidedSource)
     {
         //start production
+        EventManager.Instance.QueueEvent(new PlantingGameEvent(itemToProduce.Name));
         collidedSource.GetComponent<ISource>().Produce(itemsNeeded, itemToProduce);
     }
 }

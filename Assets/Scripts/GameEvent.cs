@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class GameEvent : MonoBehaviour
 {
-
+    public string EventDescription;
 }
 public class CurrencyChangeGameEvent : GameEvent
 {
@@ -48,5 +48,22 @@ public class LevelChangedGameEvent : GameEvent
     public LevelChangedGameEvent(int currLvl)
     {
         newLvl = currLvl;
+    }
+}
+public class BuildingGameEvent : GameEvent
+{
+    public string BuildingName;
+
+    public BuildingGameEvent(string name)
+    {
+        BuildingName = name;
+    }
+}public class PlantingGameEvent : GameEvent
+{
+    public string PlantingName;
+
+    public PlantingGameEvent(string name)
+    {
+        PlantingName = name;
     }
 }

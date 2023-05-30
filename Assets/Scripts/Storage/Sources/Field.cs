@@ -38,21 +38,25 @@ public class Field : Building, ISource
 
     protected override void OnClick()
     {
-        //check the state
-        switch (currentState)
+        base.OnClick();
+        if (built)
         {
-            case State.Empty:
-                //the field is empty -> display the crops available to plant
-                ItemsTooltip.ShowTooltip_Static(gameObject, allCrops);
-                break;
-            case State.InProgress:
-                //a crop is growing on the field -> display the timer
-                TimerTooltip.ShowTimer_Static(gameObject);
-                break;
-            case State.Ready:
-                //the field is ready -> display the tooltip to collect
-                CollectorTooltip.ShowTooltip_Static(gameObject);
-                break;
+            //check the state
+            switch (currentState)
+            {
+                case State.Empty:
+                    //the field is empty -> display the crops available to plant
+                    ItemsTooltip.ShowTooltip_Static(gameObject, allCrops);
+                    break;
+                case State.InProgress:
+                    //a crop is growing on the field -> display the timer
+                    TimerTooltip.ShowTimer_Static(gameObject);
+                    break;
+                case State.Ready:
+                    //the field is ready -> display the tooltip to collect
+                    CollectorTooltip.ShowTooltip_Static(gameObject);
+                    break;
+            }
         }
     }
 
@@ -118,6 +122,8 @@ public class Field : Building, ISource
     public void Collect()
     {
         //todo add crop to storage
+
+
 
         //change the stage
         currentState = State.Empty;
