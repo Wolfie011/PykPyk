@@ -125,7 +125,7 @@ public class StorageManager : MonoBehaviour
     private void Start()
     {
         //instantiate the silo object
-        GameObject siloObject = BuildingSystem.current.InitializeWithObject(siloPrefab, new Vector3(7.25f, -0.25f));
+        GameObject siloObject = BuildingSystem.current.InitializeWithObject(siloPrefab, new Vector3(7f, 0f));
         //get the storage building component and save it
         Silo = siloObject.GetComponent<StorageBuilding>();
         //place the building onto the map
@@ -134,7 +134,7 @@ public class StorageManager : MonoBehaviour
         Silo.Initialize(siloItems, "Silo");
 
         //instantiate the barn object
-        GameObject barnObject = BuildingSystem.current.InitializeWithObject(barnPrefab, new Vector3(6f, -0.25f));
+        GameObject barnObject = BuildingSystem.current.InitializeWithObject(barnPrefab, new Vector3(6f, 1f));
         //get the storage building component and save it
         Barn = barnObject.GetComponent<StorageBuilding>();
         //place the building onto the map

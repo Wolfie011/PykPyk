@@ -178,11 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 906c89bffc0eb3d4dad5f891f9b520a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current: {fileID: 0}
-  Placed: 0
+  name: 
   area:
     m_Position: {x: 0, y: 0, z: 0}
-    m_Size: {x: 3, y: 3, z: 1}
+    m_Size: {x: 2, y: 2, z: 1}
   data:
     ID: 
     assetName: 

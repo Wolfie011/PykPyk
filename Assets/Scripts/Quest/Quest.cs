@@ -68,7 +68,20 @@ public class Quest : ScriptableObject
         public void Skip()
         {
             //charge the player some game currency
+            EventManager.Instance.AddListenerOnce<EnoughCurrencyGameEvent>(OnEnoughCurrency);
+            EventManager.Instance.AddListenerOnce<NotEnoughCurrencyGameEvent>(OnNotEnoughCurrency);
+            CurrencyChangeGameEvent info = new CurrencyChangeGameEvent(-1, CurrencyType.Crystals);
+            EventManager.Instance.QueueEvent(info);
+        }
+        private void OnEnoughCurrency(EnoughCurrencyGameEvent info)
+        {
+            EventManager.Instance.RemoveListener<NotEnoughCurrencyGameEvent>(OnNotEnoughCurrency);
             Complete();
+        }
+        private void OnNotEnoughCurrency(NotEnoughCurrencyGameEvent info)
+        {
+            EventManager.Instance.RemoveListener<EnoughCurrencyGameEvent>(OnEnoughCurrency);
+
         }
     }
 

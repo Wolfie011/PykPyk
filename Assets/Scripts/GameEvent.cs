@@ -78,3 +78,12 @@ public class HarvestingGameEvent : GameEvent
         HarvestingName = name;
     }
 }
+public class ProductionGameEvent : GameEvent
+{
+    public string ProductionName;
+
+    public ProductionGameEvent(string name)
+    {
+        ProductionName = name;
+    }
+}
