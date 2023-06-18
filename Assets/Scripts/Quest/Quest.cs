@@ -105,6 +105,8 @@ public class Quest : ScriptableObject
         if (Completed)
         {
             //give reward
+
+
             QuestCompleted.Invoke(this);
             QuestCompleted.RemoveAllListeners();
         }

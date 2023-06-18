@@ -12,7 +12,6 @@ public static class SaveSystem
     public static string fileName { get; private set; }
     public static string filePath { get; private set; }
 
-
     public static void Initialize()
     {
         //check if the folder doesn't exist

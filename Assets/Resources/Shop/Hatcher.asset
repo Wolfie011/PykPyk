@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d85347867399ac41a012291085e48de, type: 3}
+  m_Name: Hatcher
+  m_EditorClassIdentifier: 
+  Name: Hatchery
+  Description: Hatches eggs
+  Level: 0
+  Price: 39
+  Currency: 0
+  Type: 0
+  Icon: {fileID: 21300000, guid: fa65b4657f7c78047a911a3fb6793147, type: 3}
+  Prefab: {fileID: 7342417049002658092, guid: b5255345974827b4fba101755ed486db, type: 3}

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,18 +9,27 @@ public class GameManager : MonoBehaviour
     //the main object to be saved into a file
     public SaveData saveData;
     //path for loading scriptable objects (ShopItems)
-    [SerializeField] private string shopItemsPath = "Shop";
+    public static string shopItemsPath = "Shop";
+
+    //public SocialManager socialManager;
+    public GameObject closePanel;
 
     //save the canvas
     public GameObject canvas;
 
     private void Awake()
     {
+        //initialize fields
         current = this;
-
+        
+        //initialize
         ShopItemDrag.canvas = canvas.GetComponent<Canvas>();
         UIDrag.canvas = canvas.GetComponent<Canvas>();
+        
+        //initialize the save system
+        SaveSystem.Initialize();
     }
+
     private void Start()
     {
         //load the save data
@@ -29,12 +38,21 @@ public class GameManager : MonoBehaviour
         LoadGame();
     }
 
+    private void Update()
+    {
+        //check for the Escape Key press
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseGame();
+        }
+    }
+
     private void LoadGame()
     {
         //load placeable objects (the map)
         LoadPlaceableObjects();
     }
-
+    
     private void LoadPlaceableObjects()
     {
         //go through each saved data
@@ -63,10 +81,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    public void CloseGame()
     {
+        //enable the close window
+        closePanel.SetActive(true);
+        
         //save the data before closing
         SaveSystem.Save(saveData);
+        //upload the data to server
+        //socialManager.CreateSave();
+    }
+
+    public void ConfirmClose()
+    {
+        Application.Quit();
+    }
+
+    public void ConfirmCancel()
+    {
+        closePanel.SetActive(false);
     }
 
     public void GetXP(int amount)

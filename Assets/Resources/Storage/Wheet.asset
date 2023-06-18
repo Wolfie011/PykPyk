@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fa944e8efb1344db000d0098498e84, type: 3}
+  m_Name: Wheet
+  m_EditorClassIdentifier: 
+  Name: Wheet
+  Description: 
+  Icon: {fileID: 21300000, guid: c36e6401fdf2a094eb6ae3d86b47e7cb, type: 3}
+  Level: 0
+  ItemTypes:
+  - {fileID: 11400000}
+  ItemsAmounts: 01000000
+  TimeStruct:
+    Days: 0
+    Hours: 0
+    Minutes: 0
+    Seconds: 15
+  growingCrop: {fileID: 21300000, guid: ae29cbadc53ca644982c3471c8407e93, type: 3}
+  readyCrop: {fileID: 21300000, guid: f62df02e4d43fcd44a9bf1a3f3cc46db, type: 3}
